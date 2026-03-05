@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Enablement Guide | School of Bots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --border: #2a2a3a;
+      --text: #e8e8ef;
+      --text-muted: #9090a8;
+      --accent: #c084fc;
+      --accent-dim: #a855f7;
+      --accent-glow: rgba(168,85,247,.15);
+      --green: #4ade80;
+      --green-dim: rgba(74,222,128,.12);
+      --amber: #fbbf24;
+      --amber-dim: rgba(251,191,36,.12);
+      --red: #f87171;
+      --red-dim: rgba(248,113,113,.12);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96,165,250,.12);
+      --pink: #f472b6;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-55%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.03em;
+      max-width: 700px;
+      position: relative;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      position: relative;
+    }
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent-dim);
+      color: #fff;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,85,247,.3); }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: .8rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── JOURNEY TIMELINE ── */
+    .timeline {
+      display: flex;
+      gap: 0;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-dim), var(--green), var(--blue));
+      border-radius: 3px;
+    }
+    .timeline-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      padding-top: 56px;
+    }
+    .timeline-dot {
+      width: 18px; height: 18px;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .timeline-step:nth-child(2) .timeline-dot { background: var(--pink); }
+    .timeline-step:nth-child(3) .timeline-dot { background: var(--amber); }
+    .timeline-step:nth-child(4) .timeline-dot { background: var(--green); }
+    .timeline-step:nth-child(5) .timeline-dot { background: var(--blue); }
+    .timeline-step h4 { font-size: .95rem; font-weight: 700; margin-bottom: .25rem; }
+    .timeline-step p { font-size: .78rem; color: var(--text-muted); padding: 0 .3rem; }
+
+    /* ── CARDS GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      transition: border-color .25s, transform .25s;
+    }
+    .card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+    .card-icon {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .card p { font-size: .88rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* icon bg helpers */
+    .icon-purple { background: var(--accent-glow); }
+    .icon-green  { background: var(--green-dim); }
+    .icon-amber  { background: var(--amber-dim); }
+    .icon-blue   { background: var(--blue-dim); }
+    .icon-red    { background: var(--red-dim); }
+
+    /* ── TECH EXPECTATIONS ── */
+    .tech-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .tech-card h3 { font-size: 1rem; font-weight: 700; }
+    .tech-card p { font-size: .88rem; color: var(--text-muted); }
+    .action-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .35rem .8rem;
+      border-radius: 999px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    /* ── URGENCY SPLIT ── */
+    .urgency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .urgency-box {
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+    }
+    .urgency-box.calm {
+      background: var(--green-dim);
+      border: 1px solid rgba(74,222,128,.2);
+    }
+    .urgency-box.alert {
+      background: var(--red-dim);
+      border: 1px solid rgba(248,113,113,.2);
+    }
+    .urgency-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .urgency-box.calm h3 { color: var(--green); }
+    .urgency-box.alert h3 { color: var(--red); }
+    .urgency-box ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+    .urgency-box li {
+      font-size: .9rem;
+      color: var(--text-muted);
+      padding-left: 1.3rem;
+      position: relative;
+    }
+    .urgency-box li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .55em;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+    .urgency-box.calm li::before { background: var(--green); }
+    .urgency-box.alert li::before { background: var(--red); }
+
+    /* ── REPORT SECTION ── */
+    .report-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .report-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+    }
+    .report-card .label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+    .report-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .report-card p { font-size: .85rem; color: var(--text-muted); }
+    .takeaway-bar {
+      background: linear-gradient(135deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.6rem;
+      text-align: center;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── EXAMPLE COMPARISON ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .compare-box {
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+    }
+    .compare-box.bad {
+      background: var(--red-dim);
+      border: 1px solid rgba(248,113,113,.15);
+    }
+    .compare-box.good {
+      background: var(--green-dim);
+      border: 1px solid rgba(74,222,128,.15);
+    }
+    .compare-box h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+    }
+    .compare-box.bad h3 { color: var(--red); }
+    .compare-box.good h3 { color: var(--green); }
+    .compare-box blockquote {
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 3px solid var(--border);
+      padding-left: 1rem;
+    }
+    .callout-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 1.3rem 1.5rem;
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+    .callout-box strong { color: var(--text); }
+
+    /* ── ACCESS SECTION ── */
+    .access-highlight {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    .access-stat {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .access-stat .number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .access-stat .label {
+      font-size: .85rem;
+      color: var(--text-muted);
+      margin-top: .3rem;
+    }
+    .access-text h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+    .access-text p { font-size: .9rem; color: var(--text-muted); }
+
+    /* ── COMMUNICATION ── */
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .comm-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+    .comm-icon {
+      font-size: 2rem;
+      margin-bottom: .8rem;
+    }
+    .comm-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .comm-card p { font-size: .85rem; color: var(--text-muted); }
+    .comm-card .tag {
+      display: inline-block;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: .25rem .7rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: .8rem;
+    }
+
+    /* ── MEETING CADENCE ── */
+    .cadence {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .cadence-item {
+      flex: 1;
+      min-width: 200px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.4rem;
+    }
+    .cadence-item h4 { font-size: .9rem; font-weight: 700; margin-bottom: .25rem; }
+    .cadence-item p { font-size: .82rem; color: var(--text-muted); }
+
+    /* ── CTA / CLOSING ── */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 1.5rem;
+    }
+    .cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent-dim);
+      color: #fff;
+      padding: .9rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,85,247,.3); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,15,.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .timeline { flex-direction: column; gap: 1.5rem; }
+      .timeline::before { display: none; }
+      .timeline-step { padding-top: 0; text-align: left; padding-left: 2.5rem; }
+      .timeline-dot { left: 0; top: 4px; transform: none; }
+      .urgency-grid, .compare-grid { grid-template-columns: 1fr; }
+      .report-cards { grid-template-columns: 1fr; }
+      .comm-grid { grid-template-columns: 1fr; }
+      .access-highlight { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-brand">School of Bots</a>
+  <div class="nav-links">
+    <a href="#journey">Journey</a>
+    <a href="#building">What We Build</a>
+    <a href="#technical">Technical</a>
+    <a href="#reporting">Reporting</a>
+    <a href="#access">Access</a>
+    <a href="#communication">Communication</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Client Enablement Guide</div>
+  <h1>What to Expect <span>Working With Us</span></h1>
+  <p>Everything you need to know about our process, your role, and how we'll work together to grow your business with automation.</p>
+  <a href="#journey" class="hero-cta">Get Started &#8595;</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- JOURNEY -->
+<section class="section" id="journey">
+  <div class="section-label">Your Journey</div>
+  <h2 class="section-title">The Path We Walk Together</h2>
+  <p class="section-subtitle">From kickoff to scale, here's every phase of our engagement and what happens at each step.</p>
+  <div class="timeline">
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <h4>Welcome</h4>
+      <p>Onboarding &amp; initial setup. We align on goals, access, and timelines.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <h4>Kickoff</h4>
+      <p>Strategy call to map out your automation funnels and priorities.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <h4>Build + Launch</h4>
+      <p>Weeks 1&ndash;4: We build, test, and launch your core automations.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <h4>Optimize</h4>
+      <p>Months 2&ndash;3: Fine-tune performance, fix edge cases, improve flows.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <h4>Scale</h4>
+      <p>Month 4+: Expand to new funnels, campaigns, and advanced strategies.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT WE'RE BUILDING -->
+<section class="section" id="building">
+  <div class="section-label">What We Build</div>
+  <h2 class="section-title">Your Automation Stack</h2>
+  <p class="section-subtitle">The core systems we implement to drive growth and capture leads on autopilot.</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon icon-purple">&#9993;</div>
+      <h3>New Follower DM Funnel</h3>
+      <p>Automatically welcome new followers with personalized DMs that start real conversations and drive engagement.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon icon-green">&#128172;</div>
+      <h3>Comment Growth Tool</h3>
+      <p>Turn post comments into conversations. Keyword triggers auto-respond to drive DMs, links, and lead captures.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon icon-blue">&#128231;</div>
+      <h3>Email Capture + CRM Sync</h3>
+      <p>Collect emails through chat and sync them to your CRM automatically so no lead slips through the cracks.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon icon-amber">&#127919;</div>
+      <h3>Campaign Funnels</h3>
+      <p>Custom funnels tied to launches, promos, and events. Automated sequences that convert followers into buyers.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TECHNICAL EXPECTATIONS -->
+<section class="section" id="technical">
+  <div class="section-label">Technical Expectations</div>
+  <h2 class="section-title">Things That Happen (And What to Do)</h2>
+  <p class="section-subtitle">These 4 situations are normal in automation. Here's what they look like and what we need from you.</p>
+  <div class="card-grid">
+    <div class="tech-card">
+      <h3>Meta Platform Outages</h3>
+      <p>Meta (Instagram/Facebook) occasionally goes down or changes APIs. Automations may pause temporarily.</p>
+      <div class="action-badge">&#9889; Your Action: Nothing &mdash; we monitor and fix it</div>
+    </div>
+    <div class="tech-card">
+      <h3>Permission Drops</h3>
+      <p>Sometimes Instagram disconnects our access. You'll need to re-authorize when we send a link.</p>
+      <div class="action-badge">&#9889; Your Action: Re-authorize access when prompted</div>
+    </div>
+    <div class="tech-card">
+      <h3>Pre-Existing Automations</h3>
+      <p>If you already have automations running, they can conflict with ours. Let us know about any active tools.</p>
+      <div class="action-badge">&#9889; Your Action: Tell us about existing tools</div>
+    </div>
+    <div class="tech-card">
+      <h3>New Custom Builds</h3>
+      <p>When you request something new, it takes time to spec, build, and test. Turnaround depends on complexity.</p>
+      <div class="action-badge">&#9889; Your Action: Submit requests via Slack</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHEN TO WORRY -->
+<section class="section">
+  <div class="section-label">Urgency Guide</div>
+  <h2 class="section-title">When to Worry (And When Not To)</h2>
+  <p class="section-subtitle">Not every glitch is an emergency. Here's how to tell the difference.</p>
+  <div class="urgency-grid">
+    <div class="urgency-box calm">
+      <h3>&#10003; Don't Worry</h3>
+      <ul>
+        <li>Automation paused for a few hours during Meta outage</li>
+        <li>A single DM didn't send (edge case, auto-retries)</li>
+        <li>Slight delay in CRM sync after a platform update</li>
+        <li>You see a "reconnect" prompt &mdash; just re-auth</li>
+        <li>We notify you proactively about a known issue</li>
+      </ul>
+    </div>
+    <div class="urgency-box alert">
+      <h3>&#9888; Reach Out</h3>
+      <ul>
+        <li>Automations have been down for 24+ hours with no update</li>
+        <li>Wrong messages are being sent to your audience</li>
+        <li>You're getting complaints from followers about DMs</li>
+        <li>A funnel is live but not capturing any leads</li>
+        <li>Something looks broken right before a launch or campaign</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REPORTING ISSUES -->
+<section class="section" id="reporting">
+  <div class="section-label">Issue Reporting</div>
+  <h2 class="section-title">How to Report Tech Issues</h2>
+  <p class="section-subtitle">The faster and clearer your report, the faster we fix it. Use this framework.</p>
+  <div class="report-cards">
+    <div class="report-card">
+      <div class="label">Where</div>
+      <h3>Which Platform?</h3>
+      <p>Instagram DMs, Stories, Comment tool, CRM, email &mdash; tell us exactly where.</p>
+    </div>
+    <div class="report-card">
+      <div class="label">What</div>
+      <h3>What Happened?</h3>
+      <p>Describe what you saw vs. what you expected. Screenshots help a lot.</p>
+    </div>
+    <div class="report-card">
+      <div class="label">When</div>
+      <h3>When Did It Start?</h3>
+      <p>Approximate time and date. Did it happen once or is it ongoing?</p>
+    </div>
+  </div>
+  <div class="takeaway-bar">Drop it in Slack with these 3 details and we'll handle it from there.</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GREAT REPORT EXAMPLES -->
+<section class="section">
+  <div class="section-label">Example Reports</div>
+  <h2 class="section-title">What a Great Report Looks Like</h2>
+  <p class="section-subtitle">See the difference between vague and clear issue reports.</p>
+  <div class="compare-grid">
+    <div class="compare-box bad">
+      <h3>&#10007; Vague</h3>
+      <blockquote>"Hey, the bot's not working."</blockquote>
+    </div>
+    <div class="compare-box good">
+      <h3>&#10003; Clear</h3>
+      <blockquote>"The new follower DM funnel on Instagram stopped sending since yesterday around 3 PM. I tested with a new follow and didn't get a message. Here's a screenshot."</blockquote>
+    </div>
+  </div>
+  <div class="callout-box">
+    <strong>Diagnosing and fixing the issue is our job.</strong> You don't need to figure out why it broke. Just tell us what you're seeing, where, and when &mdash; we take it from there.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PLATFORM ACCESS -->
+<section class="section" id="access">
+  <div class="section-label">Platform Access</div>
+  <h2 class="section-title">Why We Need Platform Access</h2>
+  <p class="section-subtitle">Giving us proper access isn't just helpful &mdash; it directly impacts how fast we can launch.</p>
+  <div class="access-highlight">
+    <div class="access-stat">
+      <div class="number">2&ndash;3x</div>
+      <div class="label">Faster Launch Speed</div>
+    </div>
+    <div class="access-text">
+      <h3>Custom Attributes &amp; Deep Integrations</h3>
+      <p>With proper access, we can set up custom attributes, fine-tune targeting, and integrate directly with your CRM and email tools. Without it, we're working with workarounds that slow everything down and limit what we can build. Full access means faster delivery, better automations, and fewer back-and-forth requests.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMMUNICATION -->
+<section class="section" id="communication">
+  <div class="section-label">Communication</div>
+  <h2 class="section-title">How We Communicate</h2>
+  <p class="section-subtitle">Clear, consistent communication keeps everything running smoothly.</p>
+  <div class="comm-grid">
+    <div class="comm-card">
+      <div class="comm-icon">&#128203;</div>
+      <h3>Monday Recaps</h3>
+      <p>Start each week with a summary of what's been done, what's in progress, and what's coming up.</p>
+      <div class="tag">Weekly</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">&#128247;</div>
+      <h3>Wednesday Meetings</h3>
+      <p>Video check-ins to review progress, answer questions, and align on priorities.</p>
+      <div class="tag">See cadence below</div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon">&#128172;</div>
+      <h3>Slack Anytime</h3>
+      <p>Message us in Slack whenever something comes up. We'll respond within business hours.</p>
+      <div class="tag">Always On</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:3rem; font-size:1.05rem; font-weight:700; margin-bottom:.5rem;">Meeting Cadence</h3>
+  <p style="color:var(--text-muted); font-size:.9rem; margin-bottom:1rem;">Meeting frequency adjusts as you move through the engagement.</p>
+  <div class="cadence">
+    <div class="cadence-item">
+      <h4>Weeks 1&ndash;4</h4>
+      <p>Weekly meetings during the build and launch phase.</p>
+    </div>
+    <div class="cadence-item">
+      <h4>Months 2&ndash;3</h4>
+      <p>Monthly check-ins during optimization.</p>
+    </div>
+    <div class="cadence-item">
+      <h4>Month 4+</h4>
+      <p>Quarterly strategy reviews during scale phase.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLOSING CTA -->
+<section class="cta-section">
+  <h2>Ready to Build Something Great?</h2>
+  <p>If you have questions, ideas, or need anything at all &mdash; drop us a message in Slack. We're here for you.</p>
+  <a href="#" class="cta-btn">Message Us on Slack &#8594;</a>
+</section>
+
+<footer>
+  &copy; 2026 School of Bots. All rights reserved.
+</footer>
+
+</body>
+</html>
