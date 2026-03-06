@@ -554,6 +554,123 @@
       background: var(--sob-portage);
     }
 
+    /* ── MOMENTUM MAP ── */
+    .momentum-section {
+      background: var(--sob-navy);
+      color: var(--sob-white-smoke);
+      padding: 5rem 1.5rem;
+    }
+    .momentum-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .momentum-section .section-label {
+      color: var(--sob-texas-rose);
+    }
+    .momentum-section .section-title {
+      color: var(--sob-white-smoke);
+    }
+    .momentum-section .section-subtitle {
+      color: rgba(248, 249, 250, 0.75);
+    }
+    .momentum-intro {
+      font-size: 1rem;
+      color: rgba(248, 249, 250, 0.8);
+      max-width: 720px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+    .momentum-phases {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .momentum-phases::before {
+      content: '';
+      position: absolute;
+      top: 38px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sob-heliotrope), var(--sob-portage), var(--sob-texas-rose), var(--sob-portage), var(--sob-heliotrope));
+      border-radius: 3px;
+      z-index: 0;
+    }
+    .phase-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .phase-card:nth-child(2) {
+      border-color: rgba(235, 85, 246, 0.25);
+      background: rgba(235, 85, 246, 0.06);
+    }
+    .phase-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--sob-texas-rose);
+      color: var(--sob-ebony);
+      font-weight: 700;
+      font-size: .8rem;
+      margin-bottom: .8rem;
+    }
+    .phase-card:nth-child(2) .phase-number { background: var(--sob-heliotrope); color: var(--sob-ebony); }
+    .phase-card:nth-child(3) .phase-number { background: var(--sob-portage); }
+    .phase-card:nth-child(4) .phase-number { background: var(--sob-texas-rose); }
+    .phase-card:nth-child(5) .phase-number { background: var(--sob-heliotrope); color: var(--sob-ebony); }
+    .phase-card h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--sob-white-smoke);
+      margin-bottom: .3rem;
+    }
+    .phase-card .phase-time {
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--sob-texas-rose);
+      margin-bottom: .6rem;
+    }
+    .phase-card p {
+      font-size: .82rem;
+      color: rgba(248, 249, 250, 0.7);
+      line-height: 1.5;
+    }
+    .momentum-callout {
+      background: rgba(255, 189, 74, 0.08);
+      border: 1px solid rgba(255, 189, 74, 0.2);
+      border-left: 4px solid var(--sob-texas-rose);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      max-width: 720px;
+    }
+    .momentum-callout strong {
+      color: var(--sob-texas-rose);
+    }
+    .momentum-callout p {
+      font-size: .92rem;
+      color: rgba(248, 249, 250, 0.8);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .momentum-phases {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .momentum-phases::before { display: none; }
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -602,6 +719,7 @@
   <a href="#" class="nav-brand">School of Bots</a>
   <div class="nav-links">
     <a href="#journey">Journey</a>
+    <a href="#momentum">Momentum Map</a>
     <a href="#building">What We Build</a>
     <a href="#technical">Technical</a>
     <a href="#reporting">Reporting</a>
@@ -650,6 +768,52 @@
       <div class="timeline-dot"></div>
       <h4>Scale</h4>
       <p>Month 4+: Expand to new funnels, campaigns, and advanced strategies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MOMENTUM MAP -->
+<section class="momentum-section" id="momentum">
+  <div class="momentum-inner">
+    <div class="section-label">The Momentum Map</div>
+    <h2 class="section-title">Every Business Goes Through the Same Arc</h2>
+    <p class="momentum-intro">A dip in clarity before a surge in results. This is one of the most well-documented patterns in business, and it shows up every time a company invests in building real infrastructure instead of running quick fixes. When you can see the journey ahead of you, the dip stops feeling like a problem and starts feeling like progress.</p>
+
+    <div class="momentum-phases">
+      <div class="phase-card">
+        <div class="phase-number">1</div>
+        <h4>The Launchpad</h4>
+        <div class="phase-time">Week 1</div>
+        <p>You're excited. We're connecting platforms, building automations, and wiring up the data layer. Everything feels new and full of potential.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-number">2</div>
+        <h4>The Fog</h4>
+        <div class="phase-time">Weeks 2&ndash;4</div>
+        <p>The dip. You see how many moving pieces are involved. Timelines may shift. This is the most critical phase &mdash; not because something is wrong, but because this is where most pull back too early.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-number">3</div>
+        <h4>The Turning Point</h4>
+        <div class="phase-time">Weeks 4&ndash;6</div>
+        <p>Something shifts. The system goes live, real data starts flowing, and things that felt confusing start to click. Confidence builds on evidence, not hope.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-number">4</div>
+        <h4>The Flow</h4>
+        <div class="phase-time">Months 2&ndash;3</div>
+        <p>You're in rhythm. Campaigns are running, being optimized, and producing results. You're no longer thinking about the system &mdash; you're thinking about what to do with the results.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-number">5</div>
+        <h4>Full Momentum</h4>
+        <div class="phase-time">Month 3+</div>
+        <p>The system is dialed in. Results are compounding. The conversation shifts from "is this working?" to "how do we scale this further?"</p>
+      </div>
+    </div>
+
+    <div class="momentum-callout">
+      <p><strong>The one thing to remember:</strong> Most businesses that walk away from a new system do so in Phase 2 &mdash; not because the system was failing, but because the discomfort of not yet understanding it felt like a reason to stop. The businesses that see the strongest results are the ones that recognized The Fog for what it was and kept moving forward.</p>
     </div>
   </div>
 </section>
