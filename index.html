@@ -289,18 +289,20 @@
     .tech-card h3 { font-size: 1rem; font-weight: 700; color: var(--sob-navy); }
     .tech-card p { font-size: .88rem; color: var(--text-muted); }
     .action-badge {
-      display: inline-flex;
-      align-items: center;
+      display: flex;
+      align-items: flex-start;
       gap: .35rem;
       background: rgba(255, 189, 74, 0.12);
       color: #9A6700;
       font-size: .75rem;
       font-weight: 600;
-      padding: .35rem .8rem;
-      border-radius: 999px;
-      width: fit-content;
+      padding: .5rem 1rem;
+      border-radius: var(--radius-sm);
+      width: 100%;
       text-transform: uppercase;
       letter-spacing: .04em;
+      white-space: normal;
+      line-height: 1.5;
     }
 
     /* ── URGENCY SPLIT ── */
@@ -721,7 +723,7 @@
 <section class="hero">
   <div class="hero-badge">Client Welcome Guide</div>
   <h1>What to Expect <span>Working With Us</span></h1>
-  <p>We're thrilled to have you on board. Our proven DM Funnel System has generated over $90 million in sales &mdash; and now it's your turn to grow.</p>
+  <p>We're thrilled to have you on board. Our proven DM Funnel System has generated over $90 million in sales, and we built everything you're about to experience to make your growth feel inevitable.</p>
   <a href="#journey" class="hero-cta">Get Started &#8595;</a>
 </section>
 
@@ -731,7 +733,7 @@
 <section class="section" id="journey">
   <div class="section-label">Your Journey</div>
   <h2 class="section-title">The Path We Walk Together</h2>
-  <p class="section-subtitle">From kickoff to scale &mdash; every phase is mapped, proven, and built to deliver results.</p>
+  <p class="section-subtitle">From kickoff to scale, every phase is mapped, proven, and built to deliver results.</p>
   <div class="timeline">
     <div class="timeline-step">
       <div class="timeline-dot"></div>
@@ -806,12 +808,12 @@
     <div class="tech-card">
       <h3>Permission Drops</h3>
       <p>Occasionally platform permissions disconnect. Our team monitors and reconnects these proactively. In most cases no action is required from you.</p>
-      <div class="action-badge">&#9889; Your Action: Usually none &mdash; we handle it proactively</div>
+      <div class="action-badge">&#9889; Your Action: Usually none. We monitor this proactively and handle it before you even notice.</div>
     </div>
     <div class="tech-card">
       <h3>New Funnel Requests</h3>
       <p>When a new funnel request is submitted, our team reviews the scope and schedules it into the build pipeline.</p>
-      <div class="action-badge">&#9889; Your Action: Submit requests via Slack</div>
+      <div class="action-badge">&#9889; Your Action: Bring it up in Slack or mention it on your next call. We'll capture what was discussed, scope it out, and add it to the build queue.</div>
     </div>
   </div>
 </section>
@@ -888,7 +890,7 @@
     </div>
   </div>
   <div class="callout-box">
-    <strong>Diagnosing and fixing the issue is our job.</strong> You don't need to figure out why it broke. Just tell us what you're seeing, where, and when &mdash; we take it from there.
+    <strong>Diagnosing and fixing the issue is our job.</strong> You don't need to figure out why it broke. Just tell us what you're seeing, where, and when. We'll take it from there.
   </div>
 </section>
 
@@ -943,19 +945,19 @@
         <div class="phase-number">2</div>
         <h4>Turbulence</h4>
         <div class="phase-time">Weeks 2&ndash;4</div>
-        <p>You see how many moving pieces are involved. Timelines may shift. This is where most businesses pull back too early &mdash; but it's also where the foundation gets built.</p>
+        <p>You see how many moving pieces are involved. Timelines may shift. This is where the foundation gets built, and staying engaged here is what separates clients who get results from those who don't.</p>
       </div>
       <div class="phase-card">
         <div class="phase-number">3</div>
         <h4>Breaking Through the Clouds</h4>
         <div class="phase-time">Weeks 4&ndash;6</div>
-        <p>The system goes live. Real data starts flowing. What felt confusing starts to click &mdash; what you're seeing now isn't just hope, it's evidence.</p>
+        <p>The system goes live and real data starts flowing. Early wins appear. Leads come in. What felt complex starts to click, and what you're seeing isn't just hope, it's evidence.</p>
       </div>
       <div class="phase-card">
         <div class="phase-number">4</div>
         <h4>Cruising Altitude</h4>
         <div class="phase-time">Months 2&ndash;3</div>
-        <p>Campaigns are running, being optimized, and producing measurable results. You're no longer managing the system &mdash; you're harnessing it.</p>
+        <p>What started as early signals is now consistent performance. Campaigns are running, being optimized, and compounding. You're not managing the system anymore. You're harnessing it.</p>
       </div>
       <div class="phase-card">
         <div class="phase-number">5</div>
@@ -972,7 +974,7 @@
     </div>
 
     <div class="momentum-callout">
-      <p><strong>The one thing to remember:</strong> Most businesses that walk away from a new system do so in Phase 2 &mdash; not because the system was failing, but because the discomfort of not yet understanding it felt like a reason to stop. It isn't. It's the cost of building something that compounds.</p>
+      <p><strong>The one thing to remember:</strong> Every new system has a learning curve, and that's exactly what you're navigating right now. What feels unfamiliar is the process of something powerful being built. Stay curious, ask questions, and lean on your team. The clients who get the biggest results aren't the ones who never feel uncertain. They're the ones who stay in it anyway.</p>
     </div>
   </div>
 </section>
@@ -987,7 +989,7 @@
   <div class="comm-grid">
     <div class="comm-card">
       <div class="comm-icon">&#128203;</div>
-      <h3>Monday Recaps</h3>
+      <h3>Tuesday Recaps</h3>
       <p>Start each week with a summary of what's been done, what's in progress, and what's coming up.</p>
       <div class="tag">Weekly</div>
     </div>
@@ -1021,6 +1023,7 @@
       <p>Quarterly strategy reviews during scale phase.</p>
     </div>
   </div>
+  <p style="color:var(--text-muted); font-size:.9rem; margin-top:1.25rem;">Async is our default, not a barrier. Whenever there's a big challenge or a moment where both teams need to be in the same room (virtually), just say the word and we'll make it happen.</p>
 </section>
 
 <div class="divider"></div>
@@ -1028,7 +1031,7 @@
 <!-- CLOSING CTA -->
 <section class="cta-section">
   <h2>Let's Build Something Incredible</h2>
-  <p>Questions, ideas, or ready to move? Drop us a message in Slack &mdash; your team is standing by.</p>
+  <p>Questions, ideas, or just want to check in? Drop us a message in Slack. Your team is always here.</p>
   <a href="#" class="cta-btn">Message Us on Slack &#8594;</a>
 </section>
 
