@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Referral Program | School of Bots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --sob-heliotrope: #EB55F6;
+      --sob-navy: #04005B;
+      --sob-ebony: #0D0A1B;
+      --sob-white-smoke: #F8F9FA;
+      --sob-portage: #A59FF7;
+      --sob-texas-rose: #FFBD4A;
+      --bg: var(--sob-white-smoke);
+      --surface: #FFFFFF;
+      --surface-2: #F0F1F3;
+      --border: rgba(4, 0, 91, 0.12);
+      --border-strong: rgba(4, 0, 91, 0.25);
+      --text: var(--sob-ebony);
+      --text-muted: #5A586E;
+      --accent: var(--sob-heliotrope);
+      --accent-subtle: rgba(235, 85, 246, 0.08);
+      --cta: var(--sob-texas-rose);
+      --cta-glow: rgba(255, 189, 74, 0.35);
+      --portage-subtle: rgba(165, 159, 247, 0.10);
+      --radius: 8px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(13, 10, 27, 0.05);
+      --shadow: 0 1px 3px 0 rgba(13, 10, 27, 0.1), 0 1px 2px -1px rgba(13, 10, 27, 0.1);
+      --shadow-md: 0 4px 6px -1px rgba(13, 10, 27, 0.1), 0 2px 4px -2px rgba(13, 10, 27, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(13, 10, 27, 0.1), 0 4px 6px -4px rgba(13, 10, 27, 0.1);
+    }
+
+    ::selection { background-color: var(--sob-heliotrope); color: var(--sob-ebony); }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(248, 249, 250, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--sob-navy);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .nav-links a:hover { color: var(--sob-heliotrope); }
+    .nav-links a.back {
+      color: var(--sob-portage);
+      font-weight: 600;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--sob-navy);
+      color: var(--sob-white-smoke);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(165, 159, 247, 0.15) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-55%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--sob-texas-rose);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.03em;
+      max-width: 700px;
+      position: relative;
+      color: var(--sob-white-smoke);
+    }
+    .hero h1 span { color: var(--sob-texas-rose); }
+    .hero p {
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+      color: rgba(248, 249, 250, 0.75);
+      max-width: 520px;
+      position: relative;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--sob-texas-rose);
+    }
+    .hero-stat .label {
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: rgba(248, 249, 250, 0.6);
+      margin-top: .2rem;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--sob-heliotrope);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: .8rem;
+      color: var(--sob-navy);
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── HOW IT WORKS STEPS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem; height: 2rem;
+      background: var(--sob-navy);
+      color: var(--sob-texas-rose);
+      border-radius: 50%;
+      font-size: .8rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1rem;
+    }
+    .step-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sob-navy);
+      margin-bottom: .5rem;
+    }
+    .step-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── PAYOUT BREAKDOWN ── */
+    .payout-box {
+      background: var(--sob-navy);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      color: var(--sob-white-smoke);
+      margin-top: 2rem;
+    }
+    .payout-box h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--sob-texas-rose);
+      margin-bottom: 1.5rem;
+    }
+    .payout-rows { display: flex; flex-direction: column; gap: .75rem; }
+    .payout-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .9rem 1.2rem;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      font-size: .95rem;
+    }
+    .payout-row .label { color: rgba(248,249,250,0.75); }
+    .payout-row .value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: var(--sob-texas-rose);
+    }
+    .payout-note {
+      margin-top: 1.2rem;
+      font-size: .82rem;
+      color: rgba(248,249,250,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── IDEAL CLIENT ── */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .criteria-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .criteria-card .icon {
+      font-size: 1.4rem;
+      margin-bottom: .75rem;
+    }
+    .criteria-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--sob-navy);
+      margin-bottom: .4rem;
+    }
+    .criteria-card p {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .criteria-card.green { border-left: 3px solid #22C55E; }
+    .criteria-card.red { border-left: 3px solid #EF4444; }
+
+    /* ── REFER CTA ── */
+    .refer-section {
+      background: linear-gradient(135deg, var(--sob-heliotrope) 0%, var(--sob-portage) 100%);
+      border-radius: var(--radius-md);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      color: white;
+      margin: 3rem 0;
+    }
+    .refer-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .refer-section p {
+      font-size: 1rem;
+      opacity: .9;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .refer-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .85rem 1.75rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      text-decoration: none;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--sob-texas-rose);
+      color: var(--sob-ebony);
+      box-shadow: 0 4px 20px rgba(255,189,74,0.4);
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .faq-item h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--sob-navy);
+      margin-bottom: .5rem;
+    }
+    .faq-item p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      font-size: .82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .refer-section { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">School of Bots</a>
+  <div class="nav-links">
+    <a href="index.html" class="back">&#8592; Client Guide</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#payout">Payout</a>
+    <a href="#ideal-client">Ideal Referral</a>
+    <a href="#refer-now">Refer Now</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Client Referral Program</div>
+  <h1>Get <span>$1,000 off</span> your bill for every client you send our way.</h1>
+  <p>When someone you refer signs on with us, we apply $1,000/month directly to your subscription. No forms. No chasing. We handle everything.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">$1K</div>
+      <div class="label">Per month, per referral</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">6</div>
+      <div class="label">Months per referral</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">$6K</div>
+      <div class="label">Max savings per referral</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Three steps. We do most of it.</h2>
+  <p class="section-subtitle">You make an intro. We close them, onboard them, and deliver results. Your discount starts automatically.</p>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Make the intro</h3>
+      <p>Send your contact's email to Anissa or do a quick email/text intro. That's the whole job on your end.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>We take it from there</h3>
+      <p>We run the sales call, close the deal, and handle onboarding. You don't need to pitch anything.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Your discount activates</h3>
+      <p>Once your referral is a paying client, $1,000/month is applied to your subscription automatically. No invoicing. No asking.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h3>It runs for 6 months</h3>
+      <p>Your discount continues each month for up to 6 months as long as your referral is an active client — then it wraps automatically.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PAYOUT -->
+<section class="section" id="payout">
+  <div class="section-label">The Math</div>
+  <h2 class="section-title">What this actually looks like on your bill.</h2>
+  <p class="section-subtitle">Referral discounts stack. The more people you send, the lower your bill gets.</p>
+
+  <div class="payout-box">
+    <h3>Example: Your bill with active referrals</h3>
+    <div class="payout-rows">
+      <div class="payout-row">
+        <span class="label">Your base subscription</span>
+        <span class="value">$15,000/mo</span>
+      </div>
+      <div class="payout-row">
+        <span class="label">1 active referral</span>
+        <span class="value">&#8212;$1,000/mo</span>
+      </div>
+      <div class="payout-row">
+        <span class="label">2 active referrals</span>
+        <span class="value">&#8212;$2,000/mo</span>
+      </div>
+      <div class="payout-row">
+        <span class="label">3 active referrals</span>
+        <span class="value">&#8212;$3,000/mo</span>
+      </div>
+      <div class="payout-row" style="background: rgba(255,189,74,0.15); border: 1px solid rgba(255,189,74,0.3);">
+        <span class="label" style="color: var(--sob-texas-rose); font-weight: 600;">3 referrals active = you pay</span>
+        <span class="value" style="font-size: 1.2rem;">$12,000/mo</span>
+      </div>
+    </div>
+    <p class="payout-note">Each referral discount runs for up to 6 months from the date your referral signs. If a referred client leaves before 6 months, the discount for that referral ends at that time. Discounts are applied as a credit to your subscription — not paid out in cash.</p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- IDEAL CLIENT -->
+<section class="section" id="ideal-client">
+  <div class="section-label">Who to Refer</div>
+  <h2 class="section-title">What makes a great referral.</h2>
+  <p class="section-subtitle">Not everyone is ready for DFY. Here's how to tell if someone in your network is a fit — so your time is never wasted making an intro that doesn't go anywhere.</p>
+
+  <div class="criteria-grid">
+    <div class="criteria-card green">
+      <div class="icon">✅</div>
+      <h4>100K+ Instagram followers</h4>
+      <p>They need an audience large enough to drive meaningful funnel volume. 100K is the minimum.</p>
+    </div>
+    <div class="criteria-card green">
+      <div class="icon">✅</div>
+      <h4>Active, posting content</h4>
+      <p>They post regularly and are committed to content. Our automation amplifies traffic — it doesn't create it.</p>
+    </div>
+    <div class="criteria-card green">
+      <div class="icon">✅</div>
+      <h4>Monetized business</h4>
+      <p>They sell something — a course, coaching, products, services. DM funnels need an offer to convert to.</p>
+    </div>
+    <div class="criteria-card green">
+      <div class="icon">✅</div>
+      <h4>$2M+ annual revenue</h4>
+      <p>They're operating at a scale where a $10–15K/month investment makes sense against their revenue base.</p>
+    </div>
+    <div class="criteria-card red">
+      <div class="icon">🚫</div>
+      <h4>Not ready yet? Still worth the intro.</h4>
+      <p>If someone has the audience but isn't at revenue yet, introduce them anyway. Understanding DM marketing 6–12 months early makes them a better client when they're ready.</p>
+    </div>
+    <div class="criteria-card red">
+      <div class="icon">🚫</div>
+      <h4>Not a fit</h4>
+      <p>No active posting habit, no product/offer, or audience under 50K. These won't get the results that make DFY worthwhile for them.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- REFER NOW CTA -->
+<section class="section" id="refer-now" style="padding-top: 3rem; padding-bottom: 3rem;">
+  <div class="refer-section">
+    <h2>Ready to make an intro?</h2>
+    <p>Just send a name and email — or make an email intro directly. We handle everything from there.</p>
+    <div class="refer-actions">
+      <a href="mailto:anissa@schoolofbots.co?subject=Referral%20Intro&body=Hi%20Anissa%2C%20I'd%20like%20to%20introduce%20you%20to%20[NAME]%20at%20[COMPANY].%20I%20think%20they'd%20be%20a%20great%20fit%20for%20SOB." class="btn btn-primary">Email Anissa an Intro</a>
+      <a href="mailto:natasha@schoolofbots.co?subject=Referral%20Intro" class="btn btn-ghost">Email Natasha Directly</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-label">Questions</div>
+  <h2 class="section-title">Everything else you might want to know.</h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <h4>When does my discount start?</h4>
+      <p>Your discount is applied to your subscription as soon as your referral's first payment clears. You don't need to do anything — we apply it automatically.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How long does it run?</h4>
+      <p>Up to 6 months per referral, starting from the date your referral signs. If they're still a client after 6 months, the reward wraps at that point. If they leave earlier, it ends when they do.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I refer more than one person?</h4>
+      <p>Yes — there's no limit. Each active referral adds $1,000/month to your discount. Some clients have referred enough people to bring their bill to $0.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I get anything if my referral goes to coaching instead of DFY?</h4>
+      <p>The referral reward applies to DFY (Done-For-You) clients only. If someone you introduce ends up in a coaching program, we appreciate the intro but the reward doesn't apply.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can my referral get a discount too?</h4>
+      <p>The referral discount applies to your subscription as the referrer. Your contact signs at standard pricing — but they get access to the same results that made you a client worth referring from.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What if I'm not sure if someone is a fit?</h4>
+      <p>Send them to us anyway — especially if they have the audience. We'd rather do a quick call to find out than have you second-guess a good intro. Even if the timing isn't right, we'll keep them warm.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I know if my discount is applied?</h4>
+      <p>You'll see the updated amount on your next invoice. If you ever have questions about your referral status, message Anissa in Slack.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>School of Bots &mdash; Client Referral Program</p>
+  <p style="margin-top:.3rem;">Questions? Message Anissa in Slack or email <a href="mailto:anissa@schoolofbots.co" style="color:var(--sob-portage);">anissa@schoolofbots.co</a></p>
+</footer>
+
+</body>
+</html>
